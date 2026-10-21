@@ -168,6 +168,13 @@ function resolveBaseUrl(): string {
   const explicit = process.env.EXPO_PUBLIC_API_URL
   if (explicit) return explicit.replace(/\/+$/, '')
 
+  // A production web build is served by the API itself, so the API is simply
+  // wherever the page came from.
+  if (Platform.OS === 'web' && process.env.NODE_ENV === 'production') {
+    const location = (globalThis as { location?: { origin?: string } }).location
+    if (location?.origin) return location.origin
+  }
+
   const hostUri = Constants.expoConfig?.hostUri ?? ''
   const host = hostUri.split(':')[0]
   if (host && host !== 'localhost' && host !== '127.0.0.1') {

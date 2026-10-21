@@ -1,0 +1,25 @@
+# Render blueprint: one web service that runs the API and serves the built web
+# client, with MongoDB Atlas for the database.
+#
+# Render dashboard -> New + -> Blueprint -> pick this repo. Render reads this
+# file, then asks for MONGODB_URI. DEPLOY.md has the Atlas steps.
+
+services:
+  - type: web
+    name: datascope
+    runtime: node
+    plan: free
+    buildCommand: npm --prefix server install && npm --prefix app install && npm --prefix app run build:web
+    startCommand: npm --prefix server start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      # Paste the Atlas connection string when Render asks for it.
+      - key: MONGODB_URI
+        sync: false
+      # Generated once by Render and kept secret.
+      - key: JWT_SECRET
+        generateValue: true

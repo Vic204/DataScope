@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { MongoClient } from 'mongodb'
-import { MongoMemoryServer } from 'mongodb-memory-server'
+import type { MongoMemoryServer } from 'mongodb-memory-server'
 
 /**
  * Developer convenience: boots a real mongod process against a persistent
@@ -27,6 +27,12 @@ export async function startLocalMongo(): Promise<string> {
       storageEngine: 'wiredTiger' as const,
     },
   }
+
+  // Imported lazily on purpose: this is a devDependency, and a production
+  // deploy (MONGODB_URI set to Atlas) never reaches this function. A top-level
+  // import would make the whole server fail to boot wherever dev dependencies
+  // are not installed.
+  const { MongoMemoryServer } = await import('mongodb-memory-server')
 
   try {
     instance = await MongoMemoryServer.create({
