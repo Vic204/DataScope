@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+
+# env
+.env
+.env.local
+
+# local database (mongodb-memory-server data dir)
+server/.mongo-data/
+server/.cache/
+
+# builds
+dist/
+build/
+web-build/
+.expo/
+.expo-shared/
+
+# native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# editors / os
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# uploads / exports
+exports/

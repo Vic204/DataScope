@@ -1,0 +1,35 @@
+/*
+ * Web-only polish. Expo Router renders the app into a div, so the page
+ * background has to be set here too or the diary paper stops at the edges.
+ * This file is imported from the theme and is a no-op on iOS/Android.
+ */
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background-color: #fffdf6;
+  /* Handwriting fonts are lighter than they look; keep them crisp. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+/* The paper is the design - never let the browser overscroll to white. */
+body {
+  overscroll-behavior: none;
+}
+
+::selection {
+  background-color: rgba(255, 224, 102, 0.7);
+}
+
+/* Text inputs should not show the browser's default focus ring; the field
+   draws its own. */
+input:focus,
+textarea:focus {
+  outline: none;
+}
