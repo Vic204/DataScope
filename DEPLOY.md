@@ -21,20 +21,16 @@ https://datascope.onrender.com/api/...  -> the API
 4. **Security → Network Access → Add IP Address → Allow access from anywhere**
    (`0.0.0.0/0`). Render's free tier has no fixed outbound IP, so this is
    required.
-5. **Clusters → Connect → Drivers**. Copy the connection string; it looks like
+5. **Clusters → Connect → Drivers**. Copy the connection string. It has four
+   parts: the `mongodb+srv://` prefix, your database username, your database
+   password, and the cluster host (something like `cluster0.abcde.mongodb.net`).
+6. Edit it in two places, then keep the result private — it works as a password,
+   not as a URL to share:
 
-   ```
-   mongodb+srv://datascope:<password>@cluster0.abcde.mongodb.net/?retryWrites=true&w=majority
-   ```
+   - put your database password where Atlas shows the `<password>` placeholder
+   - add `/datascope` before the `?` so the app uses its own database
 
-6. Replace `<password>` with the real password and name the database `datascope`
-   before the `?`:
-
-   ```
-   mongodb+srv://datascope:REAL_PASSWORD@cluster0.abcde.mongodb.net/datascope?retryWrites=true&w=majority
-   ```
-
-   If your password contains `@`, `:` or `/`, percent-encode it
+   If the password contains `@`, `:` or `/`, percent-encode it
    (`@` becomes `%40`).
 
 ## 2. Render (5 min)
@@ -55,14 +51,14 @@ The app starts empty. From your machine, point the seed script at Atlas:
 
 ```bash
 cd server
-MONGODB_URI="mongodb+srv://datascope:...@cluster0.abcde.mongodb.net/datascope" npm run seed
+MONGODB_URI="<paste the Atlas connection string>" npm run seed
 ```
 
 PowerShell:
 
 ```powershell
 cd server
-$env:MONGODB_URI="mongodb+srv://datascope:...@cluster0.abcde.mongodb.net/datascope"
+$env:MONGODB_URI="<paste the Atlas connection string>"
 npm run seed
 ```
 

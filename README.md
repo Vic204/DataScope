@@ -123,7 +123,7 @@ To use Atlas or an installed MongoDB instead, set one variable and restart:
 
 ```bash
 # server/.env
-MONGODB_URI=mongodb+srv://…
+MONGODB_URI=<atlas-connection-string>
 ```
 
 See `server/.env.example` for the rest.
@@ -201,7 +201,7 @@ a live link; the mechanics are:
 ```bash
 npm --prefix app run build:web          # -> app/dist
 NODE_ENV=production \
-MONGODB_URI="mongodb+srv://…" \
+MONGODB_URI="<atlas-connection-string>" \
 JWT_SECRET="…" \
 npm --prefix server start               # API + client on one port
 ```
