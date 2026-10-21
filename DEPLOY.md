@@ -5,8 +5,8 @@ Two free accounts, about ten minutes, no credit card. The database lives on
 demo is a single URL with the API under `/api` — no CORS to configure.
 
 ```
-https://datascope.onrender.com          -> the app
-https://datascope.onrender.com/api/...  -> the API
+https://<your-service>.onrender.com          -> the app
+https://<your-service>.onrender.com/api/...  -> the API
 ```
 
 ## 1. MongoDB Atlas (5 min)
