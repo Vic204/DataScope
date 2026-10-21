@@ -1,5 +1,10 @@
 # Deploying DataScope
 
+> **Optional.** DataScope is local-first — `npm run seed` plus the two dev servers
+> is the supported way to run it. This guide describes a one-service Render
+> deploy, but it has **not** been verified end-to-end against a live Render
+> instance; treat it as a starting point rather than a promise.
+
 Two free accounts, about ten minutes, no credit card. The database lives on
 **MongoDB Atlas**; the API and the web app are one **Render** service, so the
 demo is a single URL with the API under `/api` — no CORS to configure.
